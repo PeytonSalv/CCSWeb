@@ -1,13 +1,23 @@
-import { ReactNode } from "react";
-import StyledComponentsRegistry from "@/lib/styled-components-registry";
-import ClientLayout from "@/lib/client-layout";
+import type { Metadata } from 'next';
+import StyledComponentsRegistry from '@/lib/registry';
+import { GlobalStyle } from './stylesGlobals';
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export const metadata: Metadata = {
+  title: 'Cascade Core Solutions',
+  description: 'AI-focused web & software development.',
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
       <body>
         <StyledComponentsRegistry>
-          <ClientLayout>{children}</ClientLayout>
+          <GlobalStyle />
+          {children}
         </StyledComponentsRegistry>
       </body>
     </html>
