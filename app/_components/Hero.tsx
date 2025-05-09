@@ -1,58 +1,88 @@
+/* Hero.tsx ----------------------------------------------------- */
 'use client';
 
-import styled from 'styled-components';
-import { motion } from 'framer-motion';
-import { ui } from '@/styles/uiPalette';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-/* ─ Load the Three-JS canvas on the client only */
-const HeroCanvas = dynamic(() => import('./HeroCanvas'), {
-  ssr: false,
-  loading: () => null,
-});
-
-/* ─ Styled containers (unchanged except z-index order) */
+/* ——— Container ——— */
 const HeroSection = styled.section`
   position: relative;
-  height: 90vh;
-  overflow: hidden;
-  color: ${ui.text};
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  background: radial-gradient(ellipse at 80% 120%, #0d1b2a 0%, #000 100%);
+  color: #ffffff;
+  background: #000;
+  overflow: hidden;
+  scroll-snap-align: start;
 `;
 
-const CanvasLayer = styled.div`
+/* ——— Gradient accents ——— */
+const Accent = styled.div<{ $angle: number; $hue: string }>`
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    hsl(${({ $hue }) => $hue} 95% 60%) 0%,
+    transparent 70%
+  );
+  opacity: 0.12;
+  transform: translate(-50%, -50%) rotate(${({ $angle }) => $angle}deg);
   pointer-events: none;
 `;
 
-const Inner = styled.div`
-  max-width: 800px;
-  padding: 0 2rem;
-  z-index: 2;
+/* ——— Content ——— */
+const Title = styled.h1`
+  font-size: clamp(2.6rem, 5vw + 1rem, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  letter-spacing: -0.02em;
 `;
 
-/* …Title, Subtitle, CTA styled exactly as before … */
+const Subtitle = styled.p`
+  max-width: 48rem;
+  margin-top: 1rem;
+  font-size: clamp(1.1rem, 1vw + 1rem, 1.4rem);
+  text-align: center;
+  color: #b3b3b3;
+`;
+
+const CTA = styled(Link)`
+  display: inline-block;
+  margin-top: 2.6rem;
+  padding: 0.95rem 2.6rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  background: linear-gradient(135deg, #00ffe0, #4f46e5);
+  box-shadow: 0 0 24px rgba(0, 255, 255, 0.2);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 32px rgba(0, 255, 255, 0.35);
+  }
+`;
 
 export default function Hero() {
-  const [ready, setReady] = useState(false);
-  useEffect(() => setReady(true), []);
-
   return (
     <HeroSection>
-      <CanvasLayer>{ready && <HeroCanvas />}</CanvasLayer>
+      {/* gradient orbs */}
+      <Accent $angle={25} $hue="175" style={{ top: '10%', left: '15%' }} />
+      <Accent $angle={-40} $hue="260" style={{ bottom: '0%', right: '-10%' }} />
 
-      <Inner>
-        {/* motion components exactly as you had them */}
-        {/* … */}
-      </Inner>
+      {/* copy */}
+      <Title>Build&nbsp;Smarter.&nbsp;Launch&nbsp;Faster.</Title>
+      <Subtitle>
+        AI-powered development, automation, and seamless integration for forward-thinking
+        companies.
+      </Subtitle>
+      <CTA href="/contact">Let's Work Together</CTA>
     </HeroSection>
   );
 }

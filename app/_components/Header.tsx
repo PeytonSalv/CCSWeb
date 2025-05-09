@@ -5,6 +5,9 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { ui } from '@/styles/uiPalette';
+import { usePathname } from 'next/navigation';
+
+
 
 /* — glow animation — */
 const pulse = keyframes`
@@ -125,6 +128,11 @@ const Toggle = styled.button<{ open: boolean }>`
   `}
 `;
 
+//light up nav bar when user is currently on it. 
+const isActive = (path: string) => {
+  return usePathname() === path;
+};
+
 /* — component — */
 export default function Header() {
   const [open, set] = useState(false);
@@ -132,8 +140,8 @@ export default function Header() {
   return (
     <Bar>
       <Brand href="/">
-        <Image src="/logo.png" alt="logo" width={32} height={32} priority />
-        Cascade&nbsp;Core
+        <Image src="/logo.png" alt="logo" width={80} height={80} priority />
+        Cascade&nbsp;Core&nbsp;Solutions
       </Brand>
 
       <Toggle open={open} onClick={() => set(!open)} aria-label="Menu">
@@ -144,7 +152,7 @@ export default function Header() {
 
       <Nav open={open} onClick={() => set(false)}>
         <Link href="#about">About</Link>
-        <Link href="#services">Services</Link>
+        <Link href="/services">Services</Link>
         <Link href="#contact">Contact</Link>
       </Nav>
     </Bar>
