@@ -1,5 +1,6 @@
+// lib/client-layout.tsx
 "use client";
-
+import { StyledComponentsRegistry } from "./registry";
 import { ReactNode } from "react";
 import { ThemeProvider, type DefaultTheme } from "styled-components";
 import GlobalStyle from "@/app/_components/globalstyles";

@@ -1,3 +1,4 @@
+// app/stylesGlobals.tsx
 'use client';
 import { createGlobalStyle } from 'styled-components';
 import { ui } from '@/styles/uiPalette';

@@ -1,7 +1,7 @@
 'use client';
 import Header from "../_components/Header";
 import Footer from "../_components/Footer";
-import ContactForm from "../_components/ContactForm";
+import ContactForm from "./components.tsx/ContactForm";
 import TechStack from "./components.tsx/TechStack";
 import DeepDive from "./components.tsx/DeepDive";
 

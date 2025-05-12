@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { ui } from '@/styles/uiPalette';
 
 /* 3D Canvas Component (loaded client-side only) */
 const BackgroundCanvas = dynamic(() => import('./CanvasWaves'), { ssr: false });
@@ -21,6 +20,33 @@ const Section = styled.section`
   background: #0a0f1c;
   scroll-snap-align: start;
   color: white;
+
+  /* Animated Gradient Orbs */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 120vmax; /* Slightly adjusted size */
+    height: 120vmax;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(100px); /* Adjusted blur */
+    opacity: 0.15; /* Adjusted opacity for visibility with canvas */
+    z-index: -1; /* Ensure they are behind CanvasLayer and Wrapper */
+    animation: ${float} 70s linear infinite; /* Slower animation duration */
+  }
+
+  &::before {
+    background: radial-gradient(circle at center, hsla(175, 100%, 50%, 0.7) 0%, transparent 65%); /* Tealish color */
+  }
+
+  &::after {
+    background: radial-gradient(circle at center, hsla(260, 100%, 60%, 0.7) 0%, transparent 65%); /* Purplish color */
+    animation-direction: reverse;
+    animation-duration: 80s; /* Slightly different duration for variation */
+  }
 `;
 
 const CanvasLayer = styled.div`
@@ -136,7 +162,7 @@ export default function WhoWeHelp() {
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          Let’s Work Together
+          Let's Work Together
         </CTA>
 
         <Logos>

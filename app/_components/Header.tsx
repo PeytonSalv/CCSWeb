@@ -1,13 +1,12 @@
+// Header.tsx
 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { ui } from '@/styles/uiPalette';
 import { usePathname } from 'next/navigation';
-
-
 
 /* — glow animation — */
 const pulse = keyframes`
@@ -15,7 +14,6 @@ const pulse = keyframes`
   50%      { background-position: 100% 50%; }
 `;
 
-/* — styled header — */
 const Bar = styled.header`
   position: sticky;
   top: 0;
@@ -24,7 +22,6 @@ const Bar = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   background: rgba(26, 29, 36, 0.8);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid ${ui.border};
@@ -67,6 +64,8 @@ const Nav = styled.nav<{ open: boolean }>`
     position: relative;
     color: ${ui.text};
     text-decoration: none;
+    padding-bottom: 3px;
+    transition: color 0.3s ease;
 
     &::after {
       content: '';
@@ -83,6 +82,15 @@ const Nav = styled.nav<{ open: boolean }>`
 
     &:hover::after {
       transform: scaleX(1);
+    }
+
+    &.active {
+      color: ${ui.accent};
+      font-weight: 700;
+
+      &::after {
+        transform: scaleX(1);
+      }
     }
   }
 
@@ -128,14 +136,9 @@ const Toggle = styled.button<{ open: boolean }>`
   `}
 `;
 
-//light up nav bar when user is currently on it. 
-const isActive = (path: string) => {
-  return usePathname() === path;
-};
-
-/* — component — */
 export default function Header() {
   const [open, set] = useState(false);
+  const pathname = usePathname();
 
   return (
     <Bar>
@@ -151,9 +154,9 @@ export default function Header() {
       </Toggle>
 
       <Nav open={open} onClick={() => set(false)}>
-        <Link href="#about">About</Link>
-        <Link href="/services">Services</Link>
-        <Link href="#contact">Contact</Link>
+        <Link href="/about" className={pathname === '/about' ? 'active' : ''}>About</Link>
+        <Link href="/services" className={pathname === '/services' ? 'active' : ''}>Services</Link>
+        <Link href="/contact" className={pathname === '/contact' ? 'active' : ''}>Contact</Link>
       </Nav>
     </Bar>
   );

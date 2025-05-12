@@ -4,27 +4,18 @@ import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
-/**
- * Ensures styled-components works with Next.js App Router
- * (SSR + streaming).  Drop this at src/lib/registry.tsx
- */
-export default function StyledComponentsRegistry({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // Each request gets its own stylesheet
+export function StyledComponentsRegistry({ children }: { children: React.ReactNode }) {
   const [sheet] = useState(() => new ServerStyleSheet());
 
   useServerInsertedHTML(() => {
     const styles = sheet.getStyleElement();
-    sheet.instance.clearTag(); // reset after flushing
+    sheet.instance.clearTag(); // avoid duplicate styles
     return <>{styles}</>;
   });
 
-  return (
-    <StyleSheetManager sheet={sheet.instance}>
-      {children}
-    </StyleSheetManager>
-  );
+  if (typeof window !== 'undefined') {
+    return <>{children}</>;
+  }
+
+  return <StyleSheetManager sheet={sheet.instance}>{children}</StyleSheetManager>;
 }
