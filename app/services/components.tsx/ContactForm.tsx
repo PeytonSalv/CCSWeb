@@ -10,15 +10,18 @@ const fadeIn = keyframes`
 `;
 
 const Section = styled.section`
-  background: #0a0f1c; // Consistent with page background
-  padding: 4rem 2rem 6rem; // Adjusted padding
+  background: #0a0f1c;
+  padding: 5rem 2rem;
   color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  scroll-snap-align: start; // If part of a scrolling page
   min-height: 100vh;
-  justify-content: center;
+  scroll-snap-align: start;
+
+  @media (max-width: 767px) {
+    min-height: auto;
+    padding: 2rem 0.5rem 2.5rem 0.5rem;
+    scroll-snap-align: none;
+    margin-bottom: 2rem;
+  }
 `;
 
 const FormWrapper = styled(motion.div)`

@@ -4,11 +4,18 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 const Section = styled.section`
-  background: #0b101b;
-  padding: 6rem 2rem;
+  background: #0a0f1c;
+  padding: 5rem 2rem;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
   scroll-snap-align: start;
+
+  @media (max-width: 767px) {
+    min-height: auto;
+    padding: 2rem 0.5rem 2.5rem 0.5rem;
+    scroll-snap-align: none;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Wrapper = styled.div`

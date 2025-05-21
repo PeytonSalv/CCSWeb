@@ -16,6 +16,12 @@ const SnapWrapper = styled.div`
   overflow-y: scroll;
   height: 100vh;
   scroll-behavior: smooth;
+
+  @media (max-width: 767px) {
+    scroll-snap-type: none;
+    overflow-y: visible;
+    height: auto;
+  }
 `;
 
 const SnapSection = styled.section`

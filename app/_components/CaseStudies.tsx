@@ -3,6 +3,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight } from 'react-icons/fi';
+import Link from 'next/link';
 
 /* ——— Container ——— */
 const Section = styled.section`
@@ -68,18 +69,18 @@ const CaseCard = styled(motion.div)`
     line-height: 1.6;
     margin-bottom: 1.2rem;
   }
+`;
 
-  a {
-    font-size: 0.95rem;
-    display: inline-flex;
-    align-items: center;
-    color: #00ffe0;
-    text-decoration: none;
-    gap: 0.3rem;
+const CardLink = styled(Link)`
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  color: #00ffe0;
+  text-decoration: none;
+  gap: 0.3rem;
 
-    &:hover {
-      text-decoration: underline;
-    }
+  &:hover {
+    text-decoration: underline;
   }
 `;
 
@@ -89,19 +90,25 @@ const studies = [
     title: 'Car Dealership Outreach Bot',
     description:
       'A car dealership in the greater Tuscaloosa area needed to automate their outreach process to potential customers. We built a bot that sends personalized text messages to leads, followed up with them, and scheduled test drives. The result? 4x more pre-orders and 20 fewer hours per week spent on admin.',
-    link: '#',
+    link: '/case-studies/automotive-outreach',
   },
   {
     title: 'Enterprise AI + API Integration',
     description:
       'A Fortune 500 logistics firm needed to unify 12 siloed systems (ERP, CRM, fleet tracking, warehouse management) into a real-time dashboard. We built a distributed event-driven architecture using serverless AWS Lambdas, OpenAI for routing insights, and custom APIs that processed 2M+ events per day. The final product cut decision-making time by 67%.',
-    link: '#',
+    link: '/case-studies/logistics-ai-integration',
   },
   {
     title: 'Local Bakery, Big Win',
     description:
       'A family-owned bakery in Savannah was overwhelmed managing orders via phone and paper. We delivered a custom online order form, basic inventory tracker, and automatic email confirmations in under 2 weeks using low-code tools and Stripe. The result? 4x more pre-orders and 20 fewer hours per week spent on admin.',
-    link: '#',
+    link: '/case-studies/bakery-digital-transformation',
+  },
+  {
+    title: 'Healthcare AI Assistant',
+    description:
+      'A regional hospital network needed to reduce patient wait times and improve triage efficiency. We developed an AI-powered assistant that analyzes symptoms, medical history, and current wait times to optimize patient routing. The system reduced average wait times by 45% and improved patient satisfaction scores by 32%.',
+    link: '/case-studies/healthcare-ai-assistant',
   },
 ];
 
@@ -131,9 +138,9 @@ export default function CaseStudies() {
                 <h3>{cs.title}</h3>
                 <p>{cs.description}</p>
               </div>
-              <a href={cs.link}>
+              <CardLink href={cs.link}>
                 View Details <FiArrowUpRight />
-              </a>
+              </CardLink>
             </CaseCard>
           ))}
         </Grid>

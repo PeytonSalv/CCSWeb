@@ -13,6 +13,11 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  @media (max-width: 767px) {
+    min-height: auto;
+    padding: 2.5rem 0.5rem 2.5rem 0.5rem;
+  }
 `;
 
 const Heading = styled.h2`
@@ -24,21 +29,31 @@ const Heading = styled.h2`
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+
+  @media (max-width: 767px) {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const Grid = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  @media (max-width: 767px) {
+    gap: 0.8rem;
+    grid-template-columns: 1fr;
+  }
 `;
 
 const Block = styled(motion.div)`
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.07);
   border-radius: 1rem;
-  padding: 2rem;
+  padding: 1.2rem;
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease;
   cursor: default;
@@ -49,20 +64,33 @@ const Block = styled(motion.div)`
   }
 
   h3 {
-    font-size: 1.2rem;
-    margin-top: 1rem;
+    font-size: 1.1rem;
+    margin-top: 0.7rem;
     font-weight: 600;
   }
 
   p {
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
+    font-size: 0.92rem;
+    margin-top: 0.4rem;
     color: #c8cbd9;
   }
 
   svg {
-    font-size: 2rem;
+    font-size: 1.7rem;
     color: #00ffe0;
+  }
+
+  @media (max-width: 767px) {
+    padding: 0.9rem;
+    h3 {
+      font-size: 1rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
+    svg {
+      font-size: 1.3rem;
+    }
   }
 `;
 
@@ -105,6 +133,12 @@ const CtaButton = styled(motion.button)`
     &::before {
       background: linear-gradient(135deg, #00fff0, #5f56f5);
     }
+  }
+
+  @media (max-width: 767px) {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+    margin-top: 2rem;
   }
 `;
 

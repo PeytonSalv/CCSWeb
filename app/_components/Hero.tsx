@@ -21,6 +21,7 @@ const subtlePulse = keyframes`
 const HeroSection = styled.section`
   position: relative;
   height: 100vh;
+  min-height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,6 +30,14 @@ const HeroSection = styled.section`
   background: #000;
   overflow: hidden;
   scroll-snap-align: start;
+  padding-top: 0;
+
+  @media (max-width: 767px) {
+    height: auto;
+    min-height: 70vh;
+    padding-top: 90px;
+    padding-bottom: 2.5rem;
+  }
 `;
 
 /* ——— Gradient accents ——— */
@@ -52,28 +61,36 @@ const Accent = styled.div<{ $angle: number; $hue: string; $depth: number }>`
     rotate(${({ $angle }) => $angle}deg);
   pointer-events: none;
   transition: transform 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 /* ——— Content ——— */
 const Title = styled.h1`
-  font-size: clamp(2.6rem, 5vw + 1rem, 5rem);
+  font-size: clamp(1.5rem, 7vw, 3.2rem);
   font-weight: 700;
   line-height: 1.1;
   text-align: center;
   letter-spacing: -0.02em;
+  padding: 0 1.2rem;
+  margin-bottom: 1.2rem;
 `;
 
 const Subtitle = styled.p`
   max-width: 48rem;
-  margin-top: 1rem;
-  font-size: clamp(1.1rem, 1vw + 1rem, 1.4rem);
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
   text-align: center;
   color: #b3b3b3;
+  padding: 0 1.2rem;
 `;
 
 const CTA = styled(Link)`
   display: inline-block;
-  margin-top: 2.6rem;
+  margin-top: 1.2rem;
   padding: 0.95rem 2.6rem;
   border-radius: 999px;
   font-size: 1rem;

@@ -39,28 +39,40 @@ const HeroSection = styled.section`
     animation: ${animatedTechBackground} 10s linear infinite; // Apply animation
     z-index: 0;
   }
+
+  @media (max-width: 767px) {
+    height: auto;
+    min-height: 70vh;
+    padding-top: 90px;
+    padding-bottom: 2.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 `;
 
 const Content = styled.div`
   z-index: 1; // Ensure content is above the ::before pseudo-element
   max-width: 800px;
   position: relative; // Needed for z-index to work correctly against pseudo-elements
+  width: 100%;
 `;
 
 const Title = styled(motion.h1)`
-  font-size: clamp(2.6rem, 6vw, 4.4rem);
+  font-size: clamp(1.5rem, 7vw, 2.6rem);
   font-weight: 800;
   background: linear-gradient(135deg, #00ffe0, #4f46e5);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  padding: 0 0.5rem;
 `;
 
 const Subtitle = styled(motion.p)`
   margin-top: 1.2rem;
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   color: #c0c6d6;
   margin-bottom: 2.5rem; // Added margin to make space for CTA
+  padding: 0 0.5rem;
 `;
 
 const CtaButton = styled(motion.button)`

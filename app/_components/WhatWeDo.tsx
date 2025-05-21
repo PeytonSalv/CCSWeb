@@ -45,6 +45,13 @@ const Section = styled.section`
     background: radial-gradient(circle at center, #4f46e5 0%, transparent 70%);
     animation-direction: reverse;
   }
+
+  @media (max-width: 767px) {
+    height: auto;
+    min-height: 70vh;
+    padding-top: 2.5rem;
+    margin-top: 0;
+  }
 `;
 
 const CursorSpotlight = styled.div`
